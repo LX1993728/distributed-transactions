@@ -8,7 +8,6 @@ import java.util.List;
 
 @Entity
 @Table(name = "user")
-@DynamicUpdate
 public class UserEntity implements Serializable {
     private static final long serialVersionUID = 1L;
 
