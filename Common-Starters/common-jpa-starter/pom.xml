@@ -68,6 +68,7 @@
             <version>1.2.56</version>
         </dependency>
 
+
         <!-- 打包starter使用 @ConfigurationProperties annotation processing (metadata for IDEs)
         生成spring-configuration-metadata.json类，需要引入此类-->
         <dependency>

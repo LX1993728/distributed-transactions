@@ -1,8 +1,10 @@
 package com.jpa.starter.repository;
 
+import com.jpa.starter.utils.BeanCopyer;
 import com.jpa.starter.vo.PageVO;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.BeanUtils;
 import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.stereotype.Service;
 
@@ -242,6 +244,22 @@ public class GeneralService {
         }
         final List<?> resultList = em.createQuery(resultSqlBuffer.toString(), parent).getResultList();
         return resultList;
+    }
+
+
+    /**
+     * @apiNote 更新部分字段
+     * @param object 只赋值部分属性的对象
+     * @param clazz 对象的类型
+     * @param id 对象的id
+     * @return
+     */
+    @Transactional
+    public Object updateFieldsById(Object object,Class<?> clazz, Long id) throws Exception{
+        Object old = em.find(clazz, id);
+        BeanCopyer.copy(object,old);
+        Object result = em.merge(old);
+        return result;
     }
 
 }

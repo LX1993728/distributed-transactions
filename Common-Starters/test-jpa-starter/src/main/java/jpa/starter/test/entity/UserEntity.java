@@ -1,10 +1,14 @@
 package jpa.starter.test.entity;
 
+import org.hibernate.annotations.DynamicUpdate;
+
 import javax.persistence.*;
 import java.io.Serializable;
+import java.util.List;
 
 @Entity
 @Table(name = "user")
+@DynamicUpdate
 public class UserEntity implements Serializable {
     private static final long serialVersionUID = 1L;
 
@@ -15,7 +19,7 @@ public class UserEntity implements Serializable {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id; // 主键ID
 
-    @Column(nullable = false,unique = true)
+    @Column(nullable = false,unique = false)
     private String username; // 用户名
 
     private String  password; // 密码
@@ -23,6 +27,11 @@ public class UserEntity implements Serializable {
     private String salt; //盐
 
     private Integer age; // 年龄
+
+    @OneToMany(fetch = FetchType.EAGER,cascade = CascadeType.ALL)
+    @JoinColumn(name = "user_id",referencedColumnName = "id")
+    @OrderBy("bookName ASC ")
+    private List<BookEntity> books;
 
     public Long getId() {
         return id;
@@ -62,5 +71,13 @@ public class UserEntity implements Serializable {
 
     public void setAge(Integer age) {
         this.age = age;
+    }
+
+    public List<BookEntity> getBooks() {
+        return books;
+    }
+
+    public void setBooks(List<BookEntity> books) {
+        this.books = books;
     }
 }
