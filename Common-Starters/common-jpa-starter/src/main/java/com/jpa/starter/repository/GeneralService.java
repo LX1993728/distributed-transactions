@@ -257,8 +257,8 @@ public class GeneralService {
     @Transactional
     public Object updateFieldsById(Object object,Class<?> clazz, Long id) throws Exception{
         Object old = em.find(clazz, id);
-        BeanCopyer.copy(object,old);
         Object result = em.merge(old);
+        BeanCopyer.copy(object,old);
         return result;
     }
 
