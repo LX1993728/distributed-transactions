@@ -176,6 +176,16 @@
 			<!-- <version>1.2.17</version> -->
 		</dependency>
 
+		<dependency>
+			<groupId>javax.validation</groupId>
+			<artifactId>validation-api</artifactId>
+		</dependency>
+
+		<dependency>
+			<groupId>org.hibernate.validator</groupId>
+			<artifactId>hibernate-validator</artifactId>
+		</dependency>
+
 		<!-- Log libs End -->
 		<dependency>
 			<groupId>junit</groupId>

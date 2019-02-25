@@ -6,8 +6,9 @@ JAR_NAME=$SERVICE_NAME\.jar
 echo $JAVA_HOME
 
 #source $BASE_DIR/config/bashs/common.sh
-#cp -r $BASE_DIR/$SERVICE_NAME/target/$JAR_NAME $BASE_DIR/$SERVICE_NAME/target/lib/ $SERVICE_DIR/
+#cp -r $BASE_DIR/$SERVICE_NAME/target/$JAR_NAME $BASE_DIR/$SERVICE_NAME/target/lib $SERVICE_DIR/
 
 #sleep 5
 #./service-account.sh stop
+source /etc/profile
 echo  $BASE_DIR

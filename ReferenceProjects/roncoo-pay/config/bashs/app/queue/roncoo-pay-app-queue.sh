@@ -1,5 +1,5 @@
 #!/bin/sh
-
+source /etc/profile
 ## java env
 #export JAVA_HOME=/usr/local/java/jdk1.7.0_45
 #export JRE_HOME=$JAVA_HOME/jre
@@ -12,13 +12,15 @@ JAR_NAME=$APP_NAME\.jar
 
 cd $APP_DIR
 
+source /etc/profile
+
 #copy jar and libs from project
 source $BASE_DIR/config/bashs/common.sh
-cp -r $BASE_DIR/$APP_NAME/target/$JAR_NAME $BASE_DIR/$APP_NAME/target/lib/ $APP_DIR/
 
 case "$1" in
 
     start)
+        cp -r $BASE_DIR/$APP_NAME/target/$JAR_NAME $BASE_DIR/$APP_NAME/target/lib $APP_DIR/
 		## check app process weather exists
 		$0 stop
 		echo "=== satrt $APP_NAME"

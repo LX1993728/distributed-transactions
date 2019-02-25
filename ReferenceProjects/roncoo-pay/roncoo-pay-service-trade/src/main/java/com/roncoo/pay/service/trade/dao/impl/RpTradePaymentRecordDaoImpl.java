@@ -48,6 +48,7 @@ public class RpTradePaymentRecordDaoImpl extends BaseDaoImpl<RpTradePaymentRecor
 		String trxNo = null;
 		
 		try {
+			logger.info("++++++++开始生成订单号++++++++++");
 			// 获取用户编号序列
 			trxNoSeq = super.getSqlSession().selectOne(getStatement("buildTrxNoSeq"));
 			// 20位的支付流水号规范：'8888' + yyyyMMdd(时间) + 序列的后8位

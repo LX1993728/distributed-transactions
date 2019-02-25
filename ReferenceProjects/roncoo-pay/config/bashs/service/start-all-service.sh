@@ -4,6 +4,8 @@
 #export JAVA_HOME=/usr/local/java/jdk1.7.0_45
 #export JRE_HOME=$JAVA_HOME/jre
 
+source /etc/profile
+
 ../service/message/service-message.sh start
 sleep 5
 ../service/account/service-account.sh start

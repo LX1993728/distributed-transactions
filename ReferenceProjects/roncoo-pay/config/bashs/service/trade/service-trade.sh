@@ -15,11 +15,11 @@ cd $SERVICE_DIR
 
 #copy jar and libs from project
 source $BASE_DIR/config/bashs/common.sh
-cp -r $BASE_DIR/$SERVICE_NAME/target/$JAR_NAME $BASE_DIR/$SERVICE_NAME/target/lib/ $SERVICE_DIR/
 
 case "$1" in
 
     start)
+        cp -r $BASE_DIR/$SERVICE_NAME/target/$JAR_NAME $BASE_DIR/$SERVICE_NAME/target/lib $SERVICE_DIR/
         nohup java -Xms128m -Xmx1024m -jar $JAR_NAME >/dev/null 2>&1 &
         echo $! > $SERVICE_DIR/$PID
         echo "=== start $SERVICE_NAME"
