@@ -1,22 +1,26 @@
 #!/bin/sh
 
 ## java env
-export JAVA_HOME=/usr/local/java/jdk1.7.0_45
-export JRE_HOME=$JAVA_HOME/jre
+#export JAVA_HOME=/usr/local/java/jdk1.7.0_45
+#export JRE_HOME=$JAVA_HOME/jre
 
 APP_NAME=message
 
-SERVICE_DIR=/home/roncoo/service/$APP_NAME
+SERVICE_DIR=$BASE_DIR/config/bashs/service/$APP_NAME/
 SERVICE_NAME=roncoo-pay-service-$APP_NAME
 JAR_NAME=$SERVICE_NAME\.jar
 PID=$SERVICE_NAME\.pid
 
 cd $SERVICE_DIR
 
+#copy jar and libs from project
+source $BASE_DIR/config/bashs/common.sh
+cp -r $BASE_DIR/$SERVICE_NAME/target/$JAR_NAME $BASE_DIR/$SERVICE_NAME/target/lib/ $SERVICE_DIR/
+
 case "$1" in
 
     start)
-        nohup $JRE_HOME/bin/java -Xms128m -Xmx512m -jar $JAR_NAME >/dev/null 2>&1 &
+        nohup java -Xms128m -Xmx512m -jar $JAR_NAME >/dev/null 2>&1 &
         echo $! > $SERVICE_DIR/$PID
         echo "=== start $SERVICE_NAME"
         ;;

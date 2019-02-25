@@ -1,16 +1,20 @@
 #!/bin/sh
 
 ## java env
-export JAVA_HOME=/usr/local/java/jdk1.7.0_45
-export JRE_HOME=$JAVA_HOME/jre
+#export JAVA_HOME=/usr/local/java/jdk1.7.0_45
+#export JRE_HOME=$JAVA_HOME/jre
 
 ## application path
-APP_DIR=/home/roncoo/app/notify
+APP_DIR=$BASE_DIR/config/bashs/app/notify
 APP_NAME=roncoo-pay-app-notify
 
 JAR_NAME=$APP_NAME\.jar
 
 cd $APP_DIR
+
+#copy jar and libs from project
+source $BASE_DIR/config/bashs/common.sh
+cp -r $BASE_DIR/$APP_NAME/target/$JAR_NAME $BASE_DIR/$APP_NAME/target/lib/ $APP_DIR/
 
 case "$1" in
 
@@ -18,7 +22,7 @@ case "$1" in
 		## check app process weather exists
 		$0 stop
 		echo "=== satrt $APP_NAME"
-		nohup $JRE_HOME/bin/java -Xms128m -Xmx512m -jar $APP_DIR/$JAR_NAME >/dev/null 2>&1 &
+		nohup java -Xms128m -Xmx512m -jar $APP_DIR/$JAR_NAME >/dev/null 2>&1 &
         ;;
 
     stop)

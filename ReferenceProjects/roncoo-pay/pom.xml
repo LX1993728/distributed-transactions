@@ -333,6 +333,11 @@
 				<version>0.4</version>
 			</dependency>
 
+			<dependency>
+				<groupId>org.hibernate</groupId>
+				<artifactId>hibernate-validator</artifactId>
+				<version>5.2.4.Final</version>
+			</dependency>
 			<!-- dubbo end -->
 			<!--
 			<dependency>

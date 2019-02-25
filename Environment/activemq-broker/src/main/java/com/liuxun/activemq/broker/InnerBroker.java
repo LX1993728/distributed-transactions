@@ -26,7 +26,7 @@ public class InnerBroker {
     }
 
     public static void main(String[] args) throws Exception{
-        broker1();
-//        broker2();
+//        broker1();
+        broker2();
     }
 }
