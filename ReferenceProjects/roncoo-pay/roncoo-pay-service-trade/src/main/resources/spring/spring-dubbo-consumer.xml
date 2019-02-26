@@ -23,4 +23,10 @@
 
 	<!-- 消息 -->
 	<dubbo:reference interface="com.roncoo.pay.service.message.api.RpTransactionMessageService" id="rpTransactionMessageService" check="false" />
+	<!--改为异步消息确认-->
+	 <!--
+	 <dubbo:reference interface="com.roncoo.pay.service.message.api.RpTransactionMessageService" id="rpTransactionMessageService" check="false">
+   		 <dubbo:method name="confirmAndSendMessage" async="true" return="false" />
+	 </dubbo:reference>
+	  -->
 </beans>  
