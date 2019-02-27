@@ -146,16 +146,20 @@ public class GeneralService {
      * @apiNote 根据指定String类型字段插入或更新数据
      */
     @Transactional
-    public void saveOrUpdateByField(Class<?> parent, Class<?> target, String field, String fieldValue, Object object) throws Exception{
+    public void saveOrUpdateByField(Class<?> parent, Class<?> target, String field, String fieldValue, Object object){
         final String parentName = parent.getSimpleName();
         final String targetName = target.getSimpleName();
         String querySQL = "SELECT a FROM " + parentName + " a WHERE type(a)=" + targetName + " AND a." + field + "='" + fieldValue + "'";
         logger.info("==== saveOrUpdate sql=  {} ", querySQL);
         final List<?> resultList = em.createQuery(querySQL, parent).getResultList();
-        for (int i = 0; i < resultList.size(); i++) {
+        try {
+            for (int i = 0; i < resultList.size(); i++) {
 //            em.remove(resultList.get(i));
-            BeanCopyer.copy(object,resultList.get(i));
-            em.merge(resultList.get(i));
+                BeanCopyer.copy(object,resultList.get(i));
+                em.merge(resultList.get(i));
+            }
+        }catch (Exception e){
+            e.printStackTrace();
         }
 
         if (resultList.size() == 0){
