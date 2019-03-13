@@ -1,3 +1,12 @@
 #此文件会被优先加载，优先级最高。
 # 用于配置全局的，固定不变的属性，不会被覆盖
 
+spring:
+  jpa:
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.MySQL5Dialect
+        enable_lazy_load_no_trans: false # 解决单元测试中的 LAZY on session 问题
+        event:   # 解决hibernate multiple merge问题
+          merge:
+            entity_copy_observer: allow
