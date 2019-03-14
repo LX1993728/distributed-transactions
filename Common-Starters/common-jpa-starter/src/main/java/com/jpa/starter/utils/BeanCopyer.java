@@ -48,7 +48,9 @@ public class BeanCopyer extends BeanUtils {
                                 readMethod.setAccessible(true);
                             }
                             Object value = readMethod.invoke(source);
-                            if(value != null){  //只拷贝不为null的属性 by zhao
+                            Boolean emptyList = (value instanceof List && ((List) value).size() == 0);
+                            Boolean emptyStr = (value instanceof String && ((String) value).trim().length() == 0);
+                            if(value != null && !emptyList && !emptyStr){  //只拷贝不为null的属性 by zhao
                                 if (!Modifier.isPublic(writeMethod.getDeclaringClass().getModifiers())) {
                                     writeMethod.setAccessible(true);
                                 }
